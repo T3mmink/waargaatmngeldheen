@@ -1,0 +1,83 @@
+@import "../reindeer/styles.css";
+
+
+.background{
+background: #6E0911 url(images/img01.jpg) repeat left top;
+}
+
+
+.header{
+	background-color:#650a11;
+	
+}
+
+.title{
+	font-size: 34px;
+	color: white;
+	font-family: "Trebuchet MS",Georgia,"Times New Roman",Times,serif;
+}
+
+.subtitle{
+	font-size: 14px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #757890;
+}
+
+.menu{
+	background-color:#481116;
+
+}
+
+.header{
+	font-size: 16px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #757890;
+	
+}
+
+.menu-item{
+	font-size: 16px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #757890;
+	text-transform: uppercase;
+}
+
+.content{
+	background-color:#650a11;
+	
+}
+
+.searchForm{
+    background: none repeat scroll 0 0 #723C49;
+    border: medium none;
+    color: #ABB0D1;
+    font: bold 12px Arial,Helvetica,sans-serif;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    width: 150px;
+}
+
+.text{
+	font-size: 12px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #757890;
+	
+}
+
+.mutaties{
+	font-size: 11px;
+	font-family: Arial, Georgia,"Times New Roman",Times,serif;
+	color: #757890;
+	
+}
+	
+.mutatiesHeader{
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: Arial, Georgia,"Times New Roman",Times,serif;
+	color: #757890;
+	margin: 15px;
+	
+	
+}
+	

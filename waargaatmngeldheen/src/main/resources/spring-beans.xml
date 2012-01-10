@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/tx 
+     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- Activate Spring annotation support -->
+	<context:annotation-config />
+<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<context:component-scan base-package="nl.arnovanoort"></context:component-scan>
+
+	<jee:jndi-lookup jndi-name="jboss/datasources/MySqlDS"
+		resource-ref="false" id="dataSource"></jee:jndi-lookup>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="waargaatmngeldheen" />
+		<property name="persistenceXmlLocation" value="META-INF/persistence.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="hibernate.hbm2ddl.auto" value="none" />
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- configureer jpa implementatie -->
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="MYSQL" />
+		<property name="showSql" value="true" />
+		<property name="generateDdl" value="false" />
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+	</bean>
+
+	<!-- Zorgt ervoor dat entitymanager zal worden geinjecteerd bij @persistenceContext -->
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<!-- Spring convenience interceptor die generieke checked exceptions omzet 
+		naar specifieke unchecked exceptions. -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<bean
+		class="nl.arnovanoort.wgmgh.log.LoggerPostProcessor" />
+
+
+	<!-- Vaadin application -->
+	<bean scope="session" class="nl.arnovanoort.vaadintest6.MyVaadinApplication" />
+
+</beans>
